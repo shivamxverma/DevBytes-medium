@@ -3,8 +3,6 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-
-
 const SignupPage = () => {
     const [email , setEmail] = useState<string>('');
     const [password,setpassword] = useState<string>('');
@@ -14,12 +12,13 @@ const SignupPage = () => {
     const onsubmitHandler = async () => {
       try{
         const res = await axios.post('http://localhost:3000/api/signin', { email: email, password: password });
-        console.log(res);
+        // console.log(res);
+        localStorage.setItem('UserId', res.data.UserId);
         setEmail('');
         setpassword('');
         setsuccess(true);
         router.push('/');
-      } catch(err){
+      } catch(err : any){
         setsuccess(false);
         alert('Error ',err);
       }

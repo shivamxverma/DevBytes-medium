@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .blog-content {
   font-family: 'Arial', sans-serif;
   line-height: 1.8;
