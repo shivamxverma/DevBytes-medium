@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
+import { getDateFromToken } from './services/getDateFromToken';
  
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -7,6 +8,10 @@ export function middleware(request: NextRequest) {
   const isPublic = (path === '/signin' || path === '/signup');
 
   const token = request.cookies.get('token')?.value || '';
+
+  const UserId = getDateFromToken(request);
+
+  if(UserId) localStorage.setItem('UserId', UserId);
 
   if(isPublic && token) return NextResponse.redirect(new URL('/', request.nextUrl));
 
