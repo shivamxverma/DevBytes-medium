@@ -20,10 +20,10 @@ export function getDateFromToken(request: NextRequest) {
     const token = request.cookies.get('token')?.value || '';
     const DecodedDataUser : DecodedData = jwt.verify(token, process.env.JWT_SECRET!) as DecodedData;
 
-    const id = DecodedDataUser.id;
+    const id  : string = DecodedDataUser.id;
     return id;
   } catch(err : any){
-    throw new Error(err.message);
+    return '';
   }
 }
 
